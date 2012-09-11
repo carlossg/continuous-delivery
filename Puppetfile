@@ -2,7 +2,7 @@ forge 'http://forge.puppetlabs.com'
 
 mod 'puppetlabs/stdlib', '3.0.1'
 mod 'puppetlabs/java', '0.1.6'
-mod 'puppetlabs/apache', '0.2.2'
+mod 'puppetlabs/apache', '0.4.0'
 mod 'inkling/postgresql', '0.2.0'
 
 # mod 'camptocamp/tomcat',
