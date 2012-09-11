@@ -1,5 +1,13 @@
 /.tmp/
-/modules/
+/modules/apache/
+/modules/epel/
+/modules/firewall/
+/modules/java/
+/modules/maven/
+/modules/postgresql/
+/modules/stdlib/
+/modules/tomcat/
+/modules/wget/
 /.vagrant
 /.librarian/
 /spec/fixtures/
