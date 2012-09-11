@@ -11,7 +11,7 @@ mod 'inkling/postgresql', '0.2.0'
 
 mod 'carlossg/tomcat',
   :git => 'git://github.com/carlossg/puppet-tomcat.git',
-  :ref => 'b66db36'
+  :ref => '89f0b4d'
 
 mod 'maestrodev/maven', '0.0.2'
 
