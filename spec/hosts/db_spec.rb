@@ -1,0 +1,8 @@
+require 'spec_helper'
+
+describe 'db.acme.com' do
+  let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'CentOS', :lsbmajdistrelease => 6} }
+
+  it { should_not contain_class('java') }
+  it { should contain_class('postgresql::server') }
+end

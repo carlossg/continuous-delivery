@@ -1,0 +1,35 @@
+FORGE
+  remote: http://forge.puppetlabs.com
+  specs:
+    inkling/postgresql (0.2.0)
+      puppetlabs/firewall (>= 0.0.4)
+      puppetlabs/stdlib (>= 2.4.0)
+    maestrodev/maven (0.0.2)
+      maestrodev/wget (>= 0.0.1)
+    maestrodev/wget (0.0.1)
+    puppetlabs/apache (0.2.2)
+      puppetlabs/firewall (>= 0.0.4)
+      puppetlabs/stdlib (>= 2.2.1)
+    puppetlabs/firewall (0.0.4)
+    puppetlabs/java (0.1.6)
+      puppetlabs/stdlib (>= 0.1.6)
+    puppetlabs/stdlib (3.0.1)
+    stahnma/epel (0.0.2)
+
+GIT
+  remote: git://github.com/carlossg/puppet-tomcat.git
+  ref: b66db36
+  sha: b66db36b16404f481a33ca7f94987381d590768c
+  specs:
+    carlossg/tomcat (0.0.1)
+
+DEPENDENCIES
+  carlossg/tomcat (>= 0)
+  inkling/postgresql (= 0.2.0)
+  maestrodev/maven (= 0.0.2)
+  maestrodev/wget (= 0.0.1)
+  puppetlabs/apache (= 0.2.2)
+  puppetlabs/java (= 0.1.6)
+  puppetlabs/stdlib (= 3.0.1)
+  stahnma/epel (= 0.0.2)
+
