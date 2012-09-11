@@ -2,7 +2,7 @@
 node /db\..*/ inherits 'parent' {
 
   file { '/etc/motd':
-    content => "db server\n"
+    content => "db server: ${::hostname}\n"
   }
 
   class { 'postgresql::server':

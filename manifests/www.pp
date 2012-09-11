@@ -2,7 +2,7 @@
 node /www\..*/ inherits 'parent' {
 
   file { '/etc/motd':
-    content => "web server\n"
+    content => "web server: ${::hostname}\n"
   }
 
   include apache::mod::proxy_http

@@ -2,7 +2,7 @@
 node /tomcat\d\..*/ inherits 'parent' {
 
   file { '/etc/motd':
-    content => 'tomcat server\n'
+    content => "tomcat server: ${::hostname}\n"
   }
 
   class { 'java': distribution => 'java-1.6.0-openjdk' }
