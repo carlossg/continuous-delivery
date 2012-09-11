@@ -1,3 +1,4 @@
+# Tomcat nodes tomcat1, tomcat2, tomcat3,...
 node /tomcat\d\..*/ inherits 'parent' {
 
   file { '/etc/motd':
@@ -8,12 +9,12 @@ node /tomcat\d\..*/ inherits 'parent' {
 
   class { 'tomcat': } ->
 
-  tomcat::instance { 'centrepoint':
+  tomcat::instance { 'appfuse':
     ensure    => present,
     http_port => 8080,
   }    
 
-  $webapp = '/srv/tomcat/centrepoint/webapps/ROOT'
+  $webapp = '/srv/tomcat/appfuse/webapps/ROOT'
 
   class { 'wget': } ->
   class { 'maven::maven' :
@@ -21,8 +22,8 @@ node /tomcat\d\..*/ inherits 'parent' {
   } ->
   maven { "${webapp}.war":
     id      => 'org.appfuse:appfuse-spring:2.1.0:war',
-    require => File['/srv/tomcat/centrepoint/webapps'],
-    notify  => Service['tomcat-centrepoint'],
+    require => File['/srv/tomcat/appfuse/webapps'],
+    notify  => Service['tomcat-appfuse'],
   }
 
   # unzip the war file
@@ -42,7 +43,7 @@ node /tomcat\d\..*/ inherits 'parent' {
   # postgres configuration
   maven { "${webapp}/WEB-INF/lib/postgresql-9.1-901.jdbc4.jar":
     id => 'postgresql:postgresql:9.1-901.jdbc4',
-    } ->
+  } ->
   file { "${webapp}/WEB-INF/classes/jdbc.properties":
     ensure  => present,
     content => 'jdbc.driverClassName=org.postgresql.Driver
@@ -50,25 +51,19 @@ jdbc.url=jdbc:postgresql://db.local/appfuse
 jdbc.username=appfuse
 jdbc.password=appfuse
 hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect',
-    notify  => Service['tomcat-centrepoint'],
+    notify  => Service['tomcat-appfuse'],
   } ->
 
-  file { "${webapp}/WEB-INF/classes/META-INF/persistence.xml":
-    owner  => 'tomcat',
-    ensure => present,
-    source => 'puppet:///modules/other/persistence.xml',
-  }
-
-  file { '/srv/tomcat/centrepoint/target':
+  file { '/srv/tomcat/appfuse/target':
     owner  => 'tomcat',
     ensure => 'directory',
-    before => Service['tomcat-centrepoint'],
+    before => Service['tomcat-appfuse'],
   }
 
   firewall { '100 allow tomcat':
-    proto       => 'tcp',
-    port        => '8080',
-    action      => 'accept',
+    proto  => 'tcp',
+    port   => '8080',
+    action => 'accept',
   }
 
 }

@@ -1,3 +1,5 @@
+# Start avahi services for mdns
+
 class avahi {
 
   package { ['avahi', 'avahi-autoipd', 'avahi-compat-libdns_sd', 'avahi-glib', 'avahi-gobject', 'avahi-tools', 'nss-mdns']:
