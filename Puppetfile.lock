@@ -18,8 +18,8 @@ FORGE
 
 GIT
   remote: git://github.com/carlossg/puppet-tomcat.git
-  ref: b66db36
-  sha: b66db36b16404f481a33ca7f94987381d590768c
+  ref: 89f0b4d
+  sha: 89f0b4d4505cd3499f57b2fd85af17509256f516
   specs:
     carlossg/tomcat (0.0.1)
 
