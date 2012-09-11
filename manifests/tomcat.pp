@@ -52,6 +52,11 @@ jdbc.username=appfuse
 jdbc.password=appfuse
 hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect',
     notify  => Service['tomcat-appfuse'],
+  } ->
+  file { '/srv/tomcat/appfuse/target':
+    owner  => 'tomcat',
+    ensure => 'directory',
+    before => Service['tomcat-appfuse'],
   }
 
   firewall { '100 allow tomcat':
