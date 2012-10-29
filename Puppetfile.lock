@@ -23,17 +23,26 @@ GIT
   specs:
     tomcat (0.0.1)
 
+GIT
+  remote: https://github.com/maestrodev/puppet-avahi.git
+  ref: master
+  sha: 52d3e42b49215f75a8062cafd379f3ea296ec595
+  specs:
+    avahi (0.0.1)
+
 PATH
   remote: mymodules/other
   specs:
     other (0.0.1)
 
 DEPENDENCIES
+  avahi (>= 0)
   inkling/postgresql (= 0.2.0)
   maestrodev/maven (= 0.0.2)
   maestrodev/wget (= 0.0.1)
   other (>= 0)
   puppetlabs/apache (= 0.4.0)
+  puppetlabs/firewall (= 0.0.4)
   puppetlabs/java (= 0.1.6)
   puppetlabs/stdlib (= 3.0.1)
   stahnma/epel (= 0.0.2)

@@ -1,4 +1,3 @@
-import 'avahi.pp'
 import 'db.pp'
 import 'tomcat.pp'
 import 'www.pp'
@@ -9,5 +8,7 @@ node 'parent' {
   }
 
   class { 'epel': } ->
-  class { 'avahi': }
+  class { 'avahi':
+    firewall => true
+  }
 }
