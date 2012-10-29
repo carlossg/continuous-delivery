@@ -18,18 +18,24 @@ FORGE
 
 GIT
   remote: git://github.com/carlossg/puppet-tomcat.git
-  ref: 89f0b4d
+  ref: master
   sha: 89f0b4d4505cd3499f57b2fd85af17509256f516
   specs:
-    carlossg/tomcat (0.0.1)
+    tomcat (0.0.1)
+
+PATH
+  remote: mymodules/other
+  specs:
+    other (0.0.1)
 
 DEPENDENCIES
-  carlossg/tomcat (>= 0)
   inkling/postgresql (= 0.2.0)
   maestrodev/maven (= 0.0.2)
   maestrodev/wget (= 0.0.1)
+  other (>= 0)
   puppetlabs/apache (= 0.4.0)
   puppetlabs/java (= 0.1.6)
   puppetlabs/stdlib (= 3.0.1)
   stahnma/epel (= 0.0.2)
+  tomcat (>= 0)
 
