@@ -1,8 +1,0 @@
-fixtures:
-  repositories:
-    "stdlib": "git://github.com/puppetlabs/puppetlabs-stdlib.git"
-    "java": "git://github.com/puppetlabs/puppetlabs-java.git"
-    "postgresql": "git://github.com/inkling/puppet-postgresql.git"
-    "wget": "git://github.com/maestrodev/puppet-wget.git"
-    "maven": "git://github.com/maestrodev/puppet-maven.git"
-    "tomcat": "git://github.com/carlossg/puppet-tomcat.git"
