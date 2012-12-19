@@ -4,9 +4,10 @@ FORGE
     inkling/postgresql (0.2.0)
       puppetlabs/firewall (>= 0.0.4)
       puppetlabs/stdlib (>= 2.4.0)
-    maestrodev/maven (0.0.2)
+    maestrodev/avahi (1.0.0)
+    maestrodev/maven (1.0.0)
       maestrodev/wget (>= 0.0.1)
-    maestrodev/wget (0.0.1)
+    maestrodev/wget (1.0.0)
     puppetlabs/apache (0.4.0)
       puppetlabs/firewall (>= 0.0.4)
       puppetlabs/stdlib (>= 2.2.1)
@@ -17,18 +18,11 @@ FORGE
     stahnma/epel (0.0.2)
 
 GIT
-  remote: git://github.com/carlossg/puppet-tomcat.git
-  ref: master
-  sha: 89f0b4d4505cd3499f57b2fd85af17509256f516
+  remote: https://github.com/carlossg/puppet-tomcat.git
+  ref: centos
+  sha: 93e7c93a5c528d4dd62b988ef4fda30b5ba9a8ae
   specs:
-    tomcat (0.0.1)
-
-GIT
-  remote: https://github.com/maestrodev/puppet-avahi.git
-  ref: master
-  sha: 52d3e42b49215f75a8062cafd379f3ea296ec595
-  specs:
-    avahi (0.0.1)
+    tomcat (0.0.2)
 
 PATH
   remote: mymodules/other
@@ -36,15 +30,13 @@ PATH
     other (0.0.1)
 
 DEPENDENCIES
-  avahi (>= 0)
   inkling/postgresql (= 0.2.0)
-  maestrodev/maven (= 0.0.2)
-  maestrodev/wget (= 0.0.1)
+  maestrodev/avahi (~> 1.0)
+  maestrodev/maven (~> 1.0)
   other (>= 0)
   puppetlabs/apache (= 0.4.0)
   puppetlabs/firewall (= 0.0.4)
   puppetlabs/java (= 0.1.6)
-  puppetlabs/stdlib (= 3.0.1)
   stahnma/epel (= 0.0.2)
   tomcat (>= 0)
 
