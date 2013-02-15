@@ -1,3 +1,3 @@
-class other {
+class acme {
   # any custom puppet declarations
 }

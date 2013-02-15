@@ -11,7 +11,7 @@ FORGE
     puppetlabs/apache (0.4.0)
       puppetlabs/firewall (>= 0.0.4)
       puppetlabs/stdlib (>= 2.2.1)
-    puppetlabs/firewall (0.0.4)
+    puppetlabs/firewall (0.1.0)
     puppetlabs/java (0.1.6)
       puppetlabs/stdlib (>= 0.1.6)
     puppetlabs/stdlib (3.0.1)
@@ -25,17 +25,17 @@ GIT
     tomcat (0.0.2)
 
 PATH
-  remote: mymodules/other
+  remote: mymodules/acme
   specs:
-    other (0.0.1)
+    acme (0.0.1)
 
 DEPENDENCIES
+  acme (>= 0)
   inkling/postgresql (= 0.2.0)
   maestrodev/avahi (~> 1.0)
   maestrodev/maven (~> 1.0)
-  other (>= 0)
   puppetlabs/apache (= 0.4.0)
-  puppetlabs/firewall (= 0.0.4)
+  puppetlabs/firewall (>= 0)
   puppetlabs/java (= 0.1.6)
   stahnma/epel (= 0.0.2)
   tomcat (>= 0)
