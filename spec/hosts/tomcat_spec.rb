@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe 'tomcat1.acme.com' do
-  let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'CentOS', :operatingsystemrelease => 6.3} }
+  include_context :centos
 
-  it { should contain_class('java').with_distribution /openjdk/ }
+  it { should contain_class('java').with_distribution /jdk/ }
 
   it "configure webapp" do
     should contain_maven('/srv/tomcat/appfuse/webapps/ROOT.war')

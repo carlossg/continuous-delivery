@@ -5,9 +5,15 @@ RSpec.configure do |c|
    c.manifest_dir = 'manifests'
 end
 
-# Fix for Puppet::Error: invalid byte sequence in US-ASCII at modules/tomcat/manifests/connector.pp:1 on node tomcat1.acme.com
+shared_context :centos do
 
-if RUBY_VERSION =~ /1.9/
-  Encoding.default_external = Encoding::UTF_8
-  Encoding.default_internal = Encoding::UTF_8
+  let(:facts) {{
+    :operatingsystem => 'CentOS',
+    :kernel => 'Linux',
+    :osfamily => 'RedHat',
+    :operatingsystemrelease => '6.3',
+    :postgres_default_version => '8.4',
+    :concat_basedir => 'tmp/concat'
+  }}
+
 end

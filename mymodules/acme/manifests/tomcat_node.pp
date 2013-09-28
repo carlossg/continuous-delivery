@@ -4,7 +4,7 @@ class acme::tomcat_node(
   $appfuse_version = '2.2.2-SNAPSHOT') {
 
   # install java
-  class { 'java': distribution => 'java-1.6.0-openjdk' }
+  class { 'java': }
 
   # install tomcat
   class { 'tomcat': } ->
