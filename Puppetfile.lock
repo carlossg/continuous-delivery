@@ -12,7 +12,7 @@ FORGE
       puppetlabs/stdlib (>= 2.2.1)
     puppetlabs/concat (1.0.0)
     puppetlabs/firewall (0.4.2)
-    puppetlabs/java (0.1.6)
+    puppetlabs/java (1.0.1)
       puppetlabs/stdlib (>= 0.1.6)
     puppetlabs/postgresql (3.0.0)
       puppetlabs/apt (< 2.0.0, >= 1.1.0)
@@ -24,10 +24,10 @@ FORGE
 
 GIT
   remote: https://github.com/carlossg/puppet-tomcat.git
-  ref: centos
-  sha: 1d5e83165792b273a21b87ee30e4551c9372b58f
+  ref: setclasspath
+  sha: 42e2af153568b788efdc073b6c65bee6d31f2043
   specs:
-    tomcat (0.0.3)
+    camptocamp/tomcat (0.0.3)
 
 PATH
   remote: mymodules/acme
@@ -36,12 +36,12 @@ PATH
 
 DEPENDENCIES
   acme (>= 0)
-  maestrodev/avahi (~> 1.0)
-  maestrodev/maven (~> 1.0)
+  camptocamp/tomcat (>= 0)
+  maestrodev/avahi (>= 1.0.0)
+  maestrodev/maven (>= 1.0.0)
   puppetlabs/apache (>= 0.9.0)
   puppetlabs/firewall (>= 0)
-  puppetlabs/java (= 0.1.6)
+  puppetlabs/java (>= 1.0.0)
   puppetlabs/postgresql (>= 3.0.0)
-  stahnma/epel (= 0.0.2)
-  tomcat (>= 0)
+  stahnma/epel (>= 0.0.2)
 

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'tomcat1.acme.com' do
   include_context :centos
 
-  it { should contain_class('java').with_distribution /jdk/ }
+  it { should contain_package('java').with_name('java-1.7.0-openjdk-devel') }
 
   it "configure webapp" do
     should contain_maven('/srv/tomcat/appfuse/webapps/ROOT.war')

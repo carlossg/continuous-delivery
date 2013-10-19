@@ -1,7 +1,10 @@
 class acme::tomcat_node(
   $db_host = 'db.local',
   $repo = 'http://carlos-mbook-pro.local:8000/repository/all/',
-  $appfuse_version = '2.2.2-SNAPSHOT') {
+  $appfuse_version = '2.2.2-SNAPSHOT',
+  $service = 'tomcat-appfuse',
+  $app_name = 'appfuse',
+  $tomcat_root = '/srv/tomcat') {
 
   # install java
   class { 'java': }
@@ -14,10 +17,10 @@ class acme::tomcat_node(
   tomcat::instance { 'appfuse':
     ensure    => present,
     http_port => 8080,
-  }    
+  }
 
   # where the war needs to be installed
-  $webapp = '/srv/tomcat/appfuse/webapps/ROOT'
+  $webapp = "${tomcat_root}/${app_name}/webapps/ROOT"
 
   # install maven and download appfuse war file from our archiva instance
   class { 'wget': } ->
@@ -29,22 +32,23 @@ class acme::tomcat_node(
   maven { "${webapp}.war":
     id      => "org.appfuse:appfuse-spring:${appfuse_version}:war",
     repos   => [$repo],
-    require => File['/srv/tomcat/appfuse/webapps'],
-    notify  => Service['tomcat-appfuse'],
+    require => File["${tomcat_root}/${app_name}/webapps"],
+    notify  => Service[$service],
   } ->
 
   # unzip the war file, needed to customize the database
   file { $webapp:
     ensure => directory,
-  } ->
+  }
+
   package { 'unzip':
-    ensure => installed,
+    ensure => present,
   } ->
   exec { 'unzip-war':
     command => "unzip ${webapp}.war",
     cwd     => $webapp,
     creates => "${webapp}/WEB-INF",
-    require => Maven["${webapp}.war"],
+    require => [Maven["${webapp}.war"], File[$webapp]],
   } ->
 
   # configure appfuse to use postgres database. Download jdbc driver and change jdbc properties
@@ -59,7 +63,7 @@ jdbc.url=jdbc:postgresql://${db_host}/appfuse
 jdbc.username=appfuse
 jdbc.password=appfuse
 hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect",
-    notify  => Service['tomcat-appfuse'],
+    notify  => Service[$service],
   } ->
 
   # change appfuse index directory to /tmp/index, otherwise will try to write to tomcat dirs
@@ -76,14 +80,14 @@ hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect",
     incl      => "${webapp}/WEB-INF/classes/hibernate.properties",
     changes   => "set app.search.index.basedir /tmp/index",
     load_path => '/tmp',
-    notify    => Service['tomcat-appfuse'],
+    notify    => Service[$service],
   } ->
 
   # Create a folder needed by appfuse
-  file { '/srv/tomcat/appfuse/target':
+  file { "${tomcat_root}/${app_name}/target":
     owner  => 'tomcat',
     ensure => 'directory',
-    before => Service['tomcat-appfuse'],
+    before => Service[$service],
   }
 
   firewall { '100 allow tomcat':

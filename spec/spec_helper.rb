@@ -12,6 +12,8 @@ shared_context :centos do
     :kernel => 'Linux',
     :osfamily => 'RedHat',
     :operatingsystemrelease => '6.3',
+    :lsbmajdistrelease => '6',
+    :operatingsystemmajrelease => '6',
     :postgres_default_version => '8.4',
     :concat_basedir => 'tmp/concat'
   }}
