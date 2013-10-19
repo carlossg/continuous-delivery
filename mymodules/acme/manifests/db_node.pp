@@ -2,15 +2,13 @@ class acme::db_node {
 
   # install postgres server
   class { 'postgresql::server':
-    config_hash => {
-      'ip_mask_allow_all_users' => '192.168.0.0/0',
-      'listen_addresses'        => '*',
-      'postgres_password'       => 'postgres',
-    },
+    ip_mask_allow_all_users => '192.168.0.0/0',
+    listen_addresses        => '*',
+    postgres_password       => 'postgres',
   } ->
 
   # create appfuse database
-  postgresql::db { 'appfuse':
+  postgresql::server::db { 'appfuse':
     user     => 'appfuse',
     password => 'appfuse',
     grant    => 'all',
