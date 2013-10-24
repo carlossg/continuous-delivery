@@ -20,7 +20,7 @@ FORGE
       puppetlabs/firewall (>= 0.0.4)
       puppetlabs/stdlib (< 5.0.0, >= 3.2.0)
     puppetlabs/stdlib (4.1.0)
-    stahnma/epel (0.0.2)
+    stahnma/epel (0.0.5)
 
 GIT
   remote: https://github.com/carlossg/puppet-tomcat.git
