@@ -20,11 +20,10 @@ task :qa_up do
 end
 
 Cucumber::Rake::Task.new(:qa) do |t|
+  FileUtils.mkdir_p("./target")
   desc "Run cucumber tests"
   t.profile = "qa"
-  # features_dir = File.dirname(__FILE__)+ "/features"
-  # opts = "-f pretty -f junit --out ./target/test-reports/ --tags @smoke_tests"
-  # t.cucumber_opts =  "#{features_dir} #{opts}"
+  t.cucumber_opts =  "-f pretty -f html --out ./target/cucumber.html -f junit --out ./target/test-reports/"
 end
 
 task :integration => [:spec, :qa_up, :qa]
