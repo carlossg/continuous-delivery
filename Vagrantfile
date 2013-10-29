@@ -14,11 +14,11 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder yum, "/var/cache/yum", :owner => "root", :group => "root"
 
   # update puppet and facter if needed, redhat-lsb-core needed for lsb* facts in tomcat module
-  # PUPPET_VERSION="3.3.1"
-  # FACTER_VERSION="1.7.3"
-  # PUPPETLABS_RELEASE_URL="http://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm"
-  # config.vm.provision :shell, :inline => "rpm -q puppetlabs-release || rpm -i #{PUPPETLABS_RELEASE_URL}"
-  # config.vm.provision :shell, :inline => "yum install -y puppet-#{PUPPET_VERSION} facter-#{FACTER_VERSION} redhat-lsb-core"
+  PUPPET_VERSION="3.3.1"
+  FACTER_VERSION="1.7.3"
+  PUPPETLABS_RELEASE_URL="http://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm"
+  config.vm.provision :shell, :inline => "rpm -q puppetlabs-release || rpm -i #{PUPPETLABS_RELEASE_URL}"
+  config.vm.provision :shell, :inline => "yum install -y puppet-#{PUPPET_VERSION} facter-#{FACTER_VERSION} redhat-lsb-core"
 
   # ssh may take some extra time, increase timeout or avoid network dns resolution
   config.ssh.timeout = 20
