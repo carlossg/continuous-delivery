@@ -20,8 +20,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, :inline => "rpm -q puppetlabs-release || rpm -i #{PUPPETLABS_RELEASE_URL}"
   config.vm.provision :shell, :inline => "yum install -y puppet-#{PUPPET_VERSION} facter-#{FACTER_VERSION} redhat-lsb-core"
 
-  # ssh may take some extra time, increase timeout or avoid network dns resolution
-  config.ssh.timeout = 20
+  # ssh may take some extra time, avoid network dns resolution
   config.vm.provider "virtualbox" do |v|
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
