@@ -42,6 +42,17 @@ Start the "production" vms with Vagrant. We assume they are up all the time
     vagrant up db tomcat1 www
 
 
+## Integration tests
+
+To run the integration tests you can start the QA vm and run the cucumber tests with rake
+
+    rake integration
+
+To run the cucumber step that accesses the login page you will need to have [phantomjs](http://phantomjs.org/) installed. To install in OS X with homebrew
+
+    brew install phantomjs
+
+
 ## Continuous integration jobs
 
 Building these jobs in jenkins. Each job triggers the next. The production updates can run in parallel.
