@@ -1,6 +1,11 @@
 # Continuous Delivery with Maven, Puppet and Tomcat 
 
-Examples of setting up a continuous delivery process using Maven, Tomcat, Puppet, Vagrant, Jenkins, Cucumber and other helpful tools for my talk [Continuous Delivery with Maven, Puppet and Tomcat](http://na.apachecon.com/schedule/presentation/187/) at ApacheCon 2013.
+Examples of setting up a continuous delivery process using Maven, Tomcat, Puppet, Vagrant, Jenkins,
+Cucumber and other helpful tools for my talk
+[Continuous Delivery with Maven, Puppet and Tomcat](http://blog.csanchez.org/2013/11/12/continuous-delivery-with-maven-puppet-and-tomcat-video-from-apachecon-na-2013/)
+at ApacheCon 2013 and
+[Infrastructure testing with Jenkins, Puppet and Vagrant](http://blog.csanchez.org/2013/10/29/infrastructure-testing-with-jenkins-puppet-and-vagrant-at-agile-testing-days/)
+at Agile Testing Days 2013.
 
 * [Vagrant](http://vagrantup.com) for VM creation and provisioning
 * [librarian-puppet](http://librarian-puppet.com/) for automatic module installation
