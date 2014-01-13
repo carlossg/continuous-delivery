@@ -1,6 +1,6 @@
 class acme::tomcat_node(
   $db_host = 'db.local',
-  $repo = 'http://carlos-mbook-pro.local:8000/repository/all/',
+  $repo = 'https://repo.maestrodev.com/archiva/repository/all/',
   $appfuse_version = '2.2.2-SNAPSHOT',
   $service = 'tomcat-appfuse',
   $app_name = 'appfuse',
