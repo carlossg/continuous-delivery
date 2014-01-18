@@ -1,5 +1,6 @@
 /.tmp/
-/modules/
+/modules/*
+!/modules/.PLACEHOLDER
 /.vagrant
 /.librarian/
 /spec/fixtures/
