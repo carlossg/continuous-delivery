@@ -75,7 +75,7 @@ hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect",
     source => "puppet:///modules/acme/properties.aug"
   } ->
   # Adjust hibernate.properties
-  augeas { 'update-hipernate-properties':
+  augeas { 'update-hibernate-properties':
     lens      => 'Properties.lns',
     incl      => "${webapp}/WEB-INF/classes/hibernate.properties",
     changes   => "set app.search.index.basedir /tmp/index",
