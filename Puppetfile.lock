@@ -1,6 +1,10 @@
 FORGE
   remote: http://forge.puppetlabs.com
   specs:
+    camptocamp/archive (0.0.1)
+    camptocamp/tomcat (0.7.1)
+      camptocamp/archive (>= 0.0.0)
+      theforeman/concat_native (>= 0.0.0)
     maestrodev/avahi (1.0.0)
     maestrodev/maven (1.1.7)
       maestrodev/wget (>= 1.0.0)
@@ -21,22 +25,16 @@ FORGE
       puppetlabs/stdlib (< 5.0.0, >= 3.2.0)
     puppetlabs/stdlib (4.1.0)
     stahnma/epel (0.0.5)
-
-GIT
-  remote: https://github.com/carlossg/puppet-tomcat.git
-  ref: setclasspath
-  sha: 42e2af153568b788efdc073b6c65bee6d31f2043
-  specs:
-    camptocamp/tomcat (0.0.3)
+    theforeman/concat_native (1.3.1)
 
 PATH
   remote: mymodules/acme
   specs:
-    acme (0.0.1)
+    carlossg/acme (0.0.1)
 
 DEPENDENCIES
-  acme (>= 0)
-  camptocamp/tomcat (>= 0)
+  camptocamp/tomcat (>= 0.6.0)
+  carlossg/acme (>= 0)
   maestrodev/avahi (>= 1.0.0)
   maestrodev/maven (>= 1.0.0)
   puppetlabs/apache (>= 0.9.0)
