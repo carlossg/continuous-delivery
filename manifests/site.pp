@@ -1,7 +1,5 @@
-import 'nodes/*.pp'
-
 node 'parent' {
-  Exec { 
+  Exec {
     path => ['/bin', '/usr/bin'],
   }
 

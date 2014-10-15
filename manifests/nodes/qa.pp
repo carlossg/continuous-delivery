@@ -12,4 +12,5 @@ node /qa\..*/ inherits 'parent' {
   class { 'acme::www_node':
     tomcat_host => 'localhost'
   }
+
 }
