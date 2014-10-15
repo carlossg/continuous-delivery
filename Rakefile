@@ -14,6 +14,10 @@ task :librarian_spec_prep do
 end
 task :spec_prep => :librarian_spec_prep
 
+RSpec::Core::RakeTask.new(:beaker) do |c|
+  c.pattern = "spec/acceptance/**/*_spec.rb"
+end
+
 task :qa_up do
   desc "Start qa vm"
   sh "vagrant up qa"

@@ -7,6 +7,8 @@ group :rake do
   gem 'rake', '>=1.0.0', :require => false
   gem 'puppet-lint', '>=0.1.13', :require => false
   gem 'puppetlabs_spec_helper', '>=0.3.0', :require => false
+  gem 'beaker', '>=1.17.0', :require => false
+  gem 'beaker-rspec', '>=2.1.0', :require => false
 
   gem 'cucumber', :require => false
   gem 'capybara', :require => false
