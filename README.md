@@ -47,28 +47,22 @@ Run the Puppet system specs with beaker
 
     bundle exec rake beaker
 
-Build the Docker image
+Build the Docker Tomcat image, change the REPO environment in `docker/tomcat/Dockerfile` with the location of your repo.
 
     docker build -t csanchez/appfuse-tomcat docker/tomcat
 
-Start the "production" vms with Vagrant. We assume they are up all the time
-Create a host entry `www.local` pointing to your Docker host.
+Start the stack containers. We assume they are up all the time
+Create a host entry `docker.local` pointing to your Docker host.
 
     docker run -d --name db -p 5432:5432 postgres:8.4.22
-    docker run -d --name nginx -p 80:80 -e VIRTUAL_HOST=docker.local -v /var/run/docker.sock:/tmp/docker.sock jwilder/nginx-proxy
-    docker run -d --name tomcat -e TOMCAT_PASS=admin -p 8080:8080 --link db:db -e VIRTUAL_HOST=www.local -e VIRTUAL_PORT=8080 csanchez/appfuse-tomcat
+    docker run -d --name nginx -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock jwilder/nginx-proxy
+    docker run -d --name tomcat -e TOMCAT_PASS=admin -p 8080:8080 --link db:db -e VIRTUAL_HOST=docker.local -e VIRTUAL_PORT=8080 csanchez/appfuse-tomcat
 
-
-    vagrant up db tomcat1 www
-
-Build and start the Docker container.
-
-    docker build -t csanchez/continuous-delivery .
-    docker run -ti --rm -p 8080:8080 csanchez/continuous-delivery
+The app should be available at [http://docker.local](http://docker.local).
 
 ## Integration tests
 
-To run the integration tests you can start a container and run the cucumber tests with rake
+To run the integration tests you can start the containers and run the cucumber tests with rake
 
     rake integration
 
@@ -83,24 +77,20 @@ Building these jobs in jenkins. Each job triggers the next. The production updat
 
 ### [appfuse](https://github.com/carlossg/appfuse)
 
+Maven job building `continuous-delivery` branch of `https://github.com/carlossg/appfuse`.
 Use your repository url instead of localhost.
 
-    clean deploy -DaltDeploymentRepository=maestro-archiva::default::http://localhost:8000/repository/appfuse -P h2
+    clean deploy -DaltDeploymentRepository=maestro-archiva::default::http://localhost:8000/repository/snapshots -DskipTests=true -P h2
 
 ### [appfuse QA](https://github.com/carlossg/continuous-delivery)
 
+Job building `https://github.com/carlossg/continuous-delivery`.
+
     bundle exec rake spec
-    bundle exec librarian-puppet install
-    vagrant destroy --force qa
-    vagrant up qa
-    bundle exec rake qa && vagrant destroy --force qa
-
-### Production boxes updates
-
-Checkout this project and create jobs to run in parallel and update with Puppet. Could ssh into the boxes and run `puppet agent --test` too.
-
-    cd ~/continuous-delivery && vagrant provision db
-
-    cd ~/continuous-delivery && vagrant provision tomcat1
-
-    cd ~/continuous-delivery && vagrant provision www
+    docker build -t csanchez/appfuse-tomcat docker/tomcat
+    docker rm --force db tomcat nginx
+    docker run -d --name db -p 5432:5432 postgres:8.4.22
+    docker run -d --name nginx -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock jwilder/nginx-proxy
+    docker run -d --name tomcat -e TOMCAT_PASS=admin -p 8080:8080 --link db:db -e VIRTUAL_HOST=docker.local -e VIRTUAL_PORT=8080 csanchez/appfuse-tomcat
+    bundle exec rake qa
+    docker rm --force db tomcat nginx

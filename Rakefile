@@ -18,11 +18,6 @@ RSpec::Core::RakeTask.new(:beaker) do |c|
   c.pattern = "spec/acceptance/**/*_spec.rb"
 end
 
-task :qa_up do
-  desc "Start qa vm"
-  sh "vagrant up qa"
-end
-
 Cucumber::Rake::Task.new(:qa) do |t|
   FileUtils.mkdir_p("./target")
   desc "Run cucumber tests"
@@ -30,6 +25,6 @@ Cucumber::Rake::Task.new(:qa) do |t|
   t.cucumber_opts =  "-f pretty -f html --out ./target/cucumber.html -f junit --out ./target/test-reports/"
 end
 
-task :integration => [:spec, :qa_up, :qa]
+task :integration => [:spec, :qa]
 
 task :default => [:spec]

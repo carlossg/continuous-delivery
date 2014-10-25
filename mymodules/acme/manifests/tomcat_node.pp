@@ -1,6 +1,6 @@
 class acme::tomcat_node(
   $db_host = 'db.local',
-  $repo = 'https://repo.maestrodev.com/archiva/repository/all/',
+  $repo = 'https://repo1.maven.org/maven2',
   $appfuse_version = '2.2.2-SNAPSHOT',
   $service = 'tomcat-appfuse',
   $app_name = 'appfuse',
