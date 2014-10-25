@@ -90,10 +90,12 @@ hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect",
     before => Service[$service],
   }
 
-  firewall { '100 allow tomcat':
-    proto  => 'tcp',
-    port   => '8080',
-    action => 'accept',
+  if $::virtual != 'docker' {
+    firewall { '100 allow tomcat':
+      proto  => 'tcp',
+      port   => '8080',
+      action => 'accept',
+    }
   }
 
 }
