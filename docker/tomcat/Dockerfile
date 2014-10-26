@@ -6,9 +6,10 @@ RUN apt-get update && apt-get install -y unzip curl postgresql
 
 RUN rm -rf $CATALINA_HOME/webapps/ROOT
 
-ENV REPO http://central.maven.org/maven2
+ENV REPO http://192.168.192.46:8000/repository/snapshots/
+ENV VERSION 2.2.2-SNAPSHOT
 
-RUN curl -sSL -o /tomcat/webapps/ROOT.war $REPO/org/appfuse/appfuse-spring/2.2.1/appfuse-spring-2.2.1.war \
+RUN curl -sSL -o /tomcat/webapps/ROOT.war $REPO/org/appfuse/appfuse-spring/$VERSION/appfuse-spring-$VERSION.war \
   && mkdir -p $CATALINA_HOME/webapps/ROOT \
   && cd $CATALINA_HOME/webapps/ROOT \
   && unzip ../ROOT.war \

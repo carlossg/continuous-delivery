@@ -15,7 +15,7 @@ describe 'wget' do
   context 'when installing in tomcat' do
     let(:manifest) { super() + %Q(
         class { 'acme::tomcat_node':
-          appfuse_version => '2.2.3'
+          appfuse_version => '2.2.1'
         }
       )
     }
