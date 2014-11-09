@@ -43,13 +43,13 @@ Run the specs with puppet-rspec
 
     bundle exec rake
 
-Run the Puppet system specs with beaker
-
-    bundle exec rake beaker
-
 Build the Docker Tomcat image, change the REPO environment in `docker/tomcat/Dockerfile` with the location of your repo.
 
     docker build -t csanchez/appfuse-tomcat docker/tomcat
+
+Run the Puppet system specs with beaker
+
+    bundle exec rake beaker
 
 Start the stack containers. We assume they are up all the time
 Create a host entry `docker.local` pointing to your Docker host.
@@ -57,7 +57,7 @@ Create a host entry `docker.local` pointing to your Docker host.
     docker run -d --name db -p 5432:5432 postgres:8.4.22
     docker run -d --name nginx -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock jwilder/nginx-proxy
     sleep 10 # wait for postgres to be up
-    docker run -d --name tomcat -e TOMCAT_PASS=admin -p 8081:8080 --link db:db -e VIRTUAL_HOST=docker.local -e VIRTUAL_PORT=8080 csanchez/appfuse-tomcat
+    docker run -d --name tomcat -p 8081:8080 --link db:db -e TOMCAT_PASS=admin -e VIRTUAL_HOST=docker.local -e VIRTUAL_PORT=8080 csanchez/appfuse-tomcat
 
 The app should be available at [http://docker.local](http://docker.local).
 
