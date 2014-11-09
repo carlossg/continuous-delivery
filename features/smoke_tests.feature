@@ -5,7 +5,7 @@ Feature: Smoke tests
   Scenario: Services should be up and listening to their assigned port
     * services should be listening on ports:
       | 80    | apache     |
-      | 8080  | tomcat     |
+      | 8081  | tomcat     |
       | 5432  | postgresql |
 
   Scenario: Appfuse is up and listening on port 80

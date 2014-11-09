@@ -1,14 +1,19 @@
 HOSTS:
-  centos-65-x64:
+  # postgres:
+  #   roles:
+  #      - db
+  #   platform: debian-7-x64
+  #   image: postgres:8.4.22
+  #   hypervisor: docker
+  #   docker_cmd: ["/bin/bash", "-c", "/usr/sbin/sshd -D -o 'PermitRootLogin yes' -o 'PasswordAuthentication yes' & /docker-entrypoint.sh postgres"]
+  tomcat:
     roles:
-      - master
-    platform: el-6-x86_64
-    image: devopsil/puppet:3.5.1
-    # ip: localhost
-    hypervisor : docker
-    docker_image_commands:
-      - yum -y install tar
-      - useradd vagrant
+      - default
+      - webapp
+    platform: ubuntu-14.04-x64
+    image: csanchez/appfuse-tomcat
+    hypervisor: docker
+    docker_cmd: ["/bin/bash", "-c", "/usr/sbin/sshd -D -o 'PermitRootLogin yes' -o 'PasswordAuthentication yes' & /run.sh"]
 CONFIG:
   log_level: debug
   type: git

@@ -6,8 +6,8 @@ group :rake do
   gem 'puppet', '>=3.4.0', :require => false
   gem 'rake', '>=1.0.0', :require => false
   gem 'puppet-lint', '>=0.1.13', :require => false
-  gem 'puppetlabs_spec_helper', '>=0.3.0', :require => false
-  gem 'beaker', '>=1.17.0', :require => false
+  gem 'puppetlabs_spec_helper', '>=0.8.2', :require => false
+  gem 'beaker', '>=1.20.1', :require => false
   gem 'beaker-rspec', '>=2.1.0', :require => false
   gem 'minitest', '<5.0.0', :require => false # avoid conflict with Beaker
 

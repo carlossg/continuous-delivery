@@ -1,30 +1,16 @@
 require 'spec_helper_acceptance'
 
-describe 'wget' do
+describe 'webapp' do
 
-  let(:manifest) { %Q(
-    Exec {
-      path => ['/bin', '/usr/bin'],
-    }
-  ) }
+  describe port(8080),
+    :node => only_host_with_role(hosts, :webapp) do
 
-  before do
-    # shell "rm -f /tmp/index*"
-  end
-
-  context 'when installing in tomcat' do
-    let(:manifest) { super() + %Q(
-        class { 'acme::tomcat_node':
-          appfuse_version => '2.2.1'
-        }
-      )
-    }
-
-    it 'should be idempotent' do
-      apply_manifest(manifest, :catch_failures => true)
-      apply_manifest(manifest, :catch_changes => true)
-      shell('test -e /tmp/index.html')
+    before do
+      # wait for tomcat to start
+      shell('while ! grep "Starting ProtocolHandler" /tomcat/logs/* > /dev/null; do echo Waiting for tomcat; sleep 2; done')
     end
+
+    it { should be_listening }
   end
 
 end

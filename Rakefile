@@ -1,5 +1,3 @@
-require 'bundler'
-Bundler.require(:rake)
 require 'rake/clean'
 require 'cucumber'
 require 'cucumber/rake/task'
@@ -14,10 +12,6 @@ task :librarian_spec_prep do
 end
 task :spec_prep => :librarian_spec_prep
 
-RSpec::Core::RakeTask.new(:beaker) do |c|
-  c.pattern = "spec/acceptance/**/*_spec.rb"
-end
-
 Cucumber::Rake::Task.new(:qa) do |t|
   FileUtils.mkdir_p("./target")
   desc "Run cucumber tests"
@@ -25,6 +19,6 @@ Cucumber::Rake::Task.new(:qa) do |t|
   t.cucumber_opts =  "-f pretty -f html --out ./target/cucumber.html -f junit --out ./target/test-reports/"
 end
 
-task :integration => [:spec, :qa]
+task :integration => [:spec, :beaker, :qa]
 
 task :default => [:spec]

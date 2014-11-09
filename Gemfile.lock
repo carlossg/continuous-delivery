@@ -60,11 +60,11 @@ GEM
       multi_json (>= 1.7.5, < 2.0)
       multi_test (>= 0.1.1)
     diff-lcs (1.2.5)
-    docker-api (1.13.6)
+    docker-api (1.14.0)
       archive-tar-minitar
       excon (>= 0.38.0)
       json
-    excon (0.40.0)
+    excon (0.41.0)
     extlib (0.9.16)
     facter (2.2.0)
       CFPropertyList (~> 2.2.6)
@@ -121,7 +121,7 @@ GEM
     json (1.8.1)
     json_pure (1.8.1)
     jwt (1.0.0)
-    launchy (2.4.2)
+    launchy (2.4.3)
       addressable (~> 2.3)
     librarian (0.1.2)
       highline
@@ -215,7 +215,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  beaker (>= 1.17.0)
+  beaker (>= 1.20.1)
   beaker-rspec (>= 2.1.0)
   capybara
   cucumber
@@ -224,5 +224,5 @@ DEPENDENCIES
   poltergeist
   puppet (>= 3.4.0)
   puppet-lint (>= 0.1.13)
-  puppetlabs_spec_helper (>= 0.3.0)
+  puppetlabs_spec_helper (>= 0.8.2)
   rake (>= 1.0.0)

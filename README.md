@@ -47,7 +47,7 @@ Build the Docker Tomcat image, change the REPO environment in `docker/tomcat/Doc
 
     docker build -t csanchez/appfuse-tomcat docker/tomcat
 
-Run the Puppet system specs with beaker
+Run the system specs with beaker
 
     bundle exec rake beaker
 
@@ -89,10 +89,11 @@ Shell job building `https://github.com/carlossg/continuous-delivery`.
 
     bundle exec rake spec
     docker build -t csanchez/appfuse-tomcat docker/tomcat
-    docker rm --force db tomcat nginx
+    bundle exec rake beaker
+    docker rm --force db tomcat nginx || true
     docker run -d --name db -p 5432:5432 postgres:8.4.22
     docker run -d --name nginx -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock jwilder/nginx-proxy
     sleep 10 # wait for postgres to be up
-    docker run -d --name tomcat -e TOMCAT_PASS=admin -p 8080:8080 --link db:db -e VIRTUAL_HOST=docker.local -e VIRTUAL_PORT=8080 csanchez/appfuse-tomcat
+    docker run -d --name tomcat -e TOMCAT_PASS=admin -p 8081:8080 --link db:db -e VIRTUAL_HOST=docker.local -e VIRTUAL_PORT=8080 csanchez/appfuse-tomcat
     bundle exec rake qa
-    docker rm --force db tomcat nginx
+    docker rm --force db tomcat nginx || true
