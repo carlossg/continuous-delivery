@@ -3,7 +3,7 @@ ENV WEBAPP_HOME $CATALINA_HOME/webapps/ROOT
 RUN apt-get update && apt-get install -y unzip curl postgresql
 RUN rm -rf $CATALINA_HOME/webapps/ROOT
 
-ENV REPO http://192.168.0.15:8000/repository/snapshots/
+ENV REPO http://10.0.250.89:8000/repository/snapshots/
 ENV VERSION 2.2.2-SNAPSHOT
 
 # Get the war
